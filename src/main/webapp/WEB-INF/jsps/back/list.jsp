@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -35,50 +36,22 @@
 								<tr>
 								    <th><input type="checkbox" id="all" onclick="#"/></th>
 								    <th>序号</th>
-								    <th>演示字段1</th>
-								    <th>演示字段2</th>
+								    <th>命令</th>
+								    <th>命令描术</th>
 								    <th>操作</th>
 								</tr>
-								<tr>
-									<td><input type="checkbox" /></td>
-									<td>1</td>
-									<td>演示值1</td>
-									<td>演示值2</td>
-									<td>
-										<a href="#">修改</a>&nbsp;&nbsp;&nbsp;
-										<a href="#">删除</a>
-									</td>
-								</tr>
-								<tr style="background-color:#ECF6EE;">
-									<td><input type="checkbox" /></td>
-									<td>2</td>
-									<td>演示值1</td>
-									<td>演示值2</td>
-									<td>
-										<a href="#">修改</a>&nbsp;&nbsp;&nbsp;
-										<a href="#">删除</a>
-									</td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" /></td>
-									<td>3</td>
-									<td>演示值1</td>
-									<td>演示值2</td>
-									<td>
-										<a href="#">修改</a>&nbsp;&nbsp;&nbsp;
-										<a href="#">删除</a>
-									</td>
-								</tr>
-								<tr style="background-color:#ECF6EE;">
-									<td><input type="checkbox" /></td>
-									<td>4</td>
-									<td>演示值1</td>
-									<td>演示值2</td>
-									<td>
-										<a href="#">修改</a>&nbsp;&nbsp;&nbsp;
-										<a href="#">删除</a>
-									</td>
-								</tr>
+								<c:forEach items="${list}" var="li" varStatus="status">
+									<tr <c:if test="${status.index % 2 != 0 }">style="background-color:#ECF6EE;"</c:if>>
+										<td><input type="checkbox" name="id" value="${li.id }"/></td>
+										<td>${status.index +1 }</td>
+										<td>${li.command }</td>
+										<td>${li.description }</td>
+										<td>
+											<a href="#">修改</a>&nbsp;&nbsp;&nbsp;
+											<a href="#">删除</a>
+										</td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 						<div class='page fix'>
